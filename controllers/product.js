@@ -32,9 +32,9 @@ exports.create = (req, res) => {
         }
 
         //check for all fields
-        const {order, description, place, category} = fields
+        const {name ,order, description, place, category} = fields
 
-        if(!order || !description || !category || !place) {
+        if(!name || !order || !description || !category || !place) {
           return res.status(400).json({
             error: 'All fields are required'
           })
