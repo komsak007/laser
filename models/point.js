@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const pointSchema = new mongoose.Schema({
-  point:{}
-})
+  point: {},
+});
 
-
-module.exports = mongoose.model("pointLaser", pointSchema)
+module.exports = mongoose.model("pointLaser", pointSchema);
