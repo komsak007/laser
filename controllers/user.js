@@ -20,7 +20,7 @@ exports.read = (req, res) => {
 
 exports.update = (req, res) => {
   User.findOneAndUpdate(
-    {_id: req.profile._id},
+    {_id: req.params.userId},
     {$set: req.body},
     {new: true},
     (err, user) => {
@@ -34,4 +34,27 @@ exports.update = (req, res) => {
       res.json(user)
     }
   )
+}
+
+exports.list = (req, res) => {
+  User.find().exec((err, data) => {
+    if(err) {
+      return res.status(400).json({
+        error: errorHandler(err)
+      })
+    }
+    res.json(data)
+  })
+}
+
+exports.remove = (req, res) => {
+  try {
+    const deleted = User.findOneAndRemove({
+      _id: req.params.id,
+    }).exec();
+    res.json(deleted);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send("User delete failed");
+  }
 }
