@@ -13,6 +13,7 @@ const {
   listBySearch,
   photo,
   createLaser,
+  updateImages,
 } = require("../controllers/product");
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
@@ -21,6 +22,12 @@ router.get("/product/:productId", read);
 router.post("/product/create/:userId", create);
 router.delete("/product/:productId/:userId", requireSignin, isAuth, remove);
 router.put("/product/:productId/:userId", requireSignin, isAuth, update);
+router.put(
+  "/product/:productId/image/:userId",
+  requireSignin,
+  isAuth,
+  updateImages
+);
 
 router.get("/products", list);
 router.get("/products/related/:productId", listRelated);

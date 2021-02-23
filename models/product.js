@@ -34,9 +34,8 @@ const productSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "Category",
   },
-  photo: {
-    data: Buffer,
-    contentType: String,
+  images: {
+    type: Array,
   },
   createdAt: {
     type: Date,

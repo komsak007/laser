@@ -21,47 +21,25 @@ exports.read = (req, res, next) => {
   return res.json(req.product);
 };
 
-exports.create = (req, res) => {
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Image could not be uploaded",
-      });
-    }
-
-    //check for all fields
-    const { name, description, place, category } = fields;
-
-    // if(!name || !order || !description || !category || !place) {
-    //   return res.status(400).json({
-    //     error: 'All fields are required'
-    //   })
-    // }
-
-    let product = new Product(fields);
-
-    if (files.photo) {
-      //console.log('FILES PHOTO: ', files.photo);
-      if (files.photo.size > 1000000) {
-        return res.status(400).json({
-          error: "Image should be less than 1mb in size",
-        });
-      }
-      product.photo.data = fs.readFileSync(files.photo.path);
-      product.photo.contentType = files.photo.type;
-    }
-
-    product.save((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          error: errorHandler(err),
-        });
-      }
-      res.json(result);
+exports.create = async (req, res) => {
+  try {
+    console.log(req.body);
+    // req.body.slug = slugify(req.body.title);
+    const newProduct = await new Product({
+      name: req.body.product.name,
+      order: req.body.product.order,
+      description: req.body.product.order,
+      category: req.body.product.category,
+      images: req.body.images,
+    }).save();
+    res.json(newProduct);
+  } catch (err) {
+    console.log(err);
+    // res.status(400).send("Create product failed");
+    res.status(400).json({
+      err: err.message,
     });
-  });
+  }
 };
 
 exports.remove = (req, res) => {
@@ -111,6 +89,16 @@ exports.update = (req, res) => {
       res.json(result);
     });
   });
+};
+
+exports.updateImages = async (req, res) => {
+  console.log(req.body);
+  const updated = await Product.findOneAndUpdate(
+    { _id: req.params.productId },
+    req.body,
+    { new: true }
+  ).exec();
+  res.json(updated);
 };
 
 /**
