@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema({
     maxlength: 32,
   },
   point: {},
+  curve: {},
   lines: [
     {
       tool: { type: String },

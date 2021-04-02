@@ -12,6 +12,7 @@ const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const pointsRoutes = require("./routes/points");
+const curveRoutes = require("./routes/curve");
 const cloudinaryRoutes = require("./routes/cloudinary");
 
 //app
@@ -39,6 +40,7 @@ app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", pointsRoutes);
+app.use("/api", curveRoutes);
 app.use("/api", cloudinaryRoutes);
 
 const port = process.env.PORT || 8000;

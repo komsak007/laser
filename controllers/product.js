@@ -225,6 +225,7 @@ exports.createLaser = (req, res) => {
     point: req.body.points,
     order: req.body.order,
     lines: req.body.lines,
+    curve: req.body.curves,
   });
 
   newRecord.save((err, docs) => {

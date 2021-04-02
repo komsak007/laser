@@ -1,11 +1,10 @@
 const express = require("express");
 var router = express.Router();
-var pointlaser = require("../models/point");
 var curveLaser = require("../models/curve");
 var ObjectId = require("mongoose").Types.ObjectId;
 
-router.get("/laser", (req, res) => {
-  pointlaser.find({}, (err, docs) => {
+router.get("/curve", (req, res) => {
+  curveLaser.find({}, (err, docs) => {
     if (!err) {
       res.json(docs[0]);
     } else {
@@ -17,9 +16,9 @@ router.get("/laser", (req, res) => {
   });
 });
 
-router.post("/laser", (req, res) => {
-  var newRecord = new pointlaser({
-    point: req.body.point,
+router.post("/curve", (req, res) => {
+  var newRecord = new curveLaser({
+    curve: req.body.curve,
   });
 
   newRecord.save((err, docs) => {
@@ -33,15 +32,15 @@ router.post("/laser", (req, res) => {
   });
 });
 
-router.put("/laser/:id", (req, res) => {
+router.put("/curve/:id", (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     return res.status(400).send("No record with given ID: " + res.params.id);
   }
 
   var updateRecord = {
-    point: req.body.point,
+    curve: req.body.curve,
   };
-  pointlaser.findByIdAndUpdate(
+  curveLaser.findByIdAndUpdate(
     req.params.id,
     { $set: updateRecord },
     { new: true },
