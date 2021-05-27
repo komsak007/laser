@@ -222,6 +222,7 @@ exports.photo = (req, res, next) => {
 exports.createLaser = (req, res) => {
   console.log(req.body);
   var newRecord = new Product({
+    name: req.body.username,
     point: req.body.points,
     order: req.body.order,
     lines: req.body.lines,
