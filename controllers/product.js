@@ -239,3 +239,22 @@ exports.createLaser = (req, res) => {
     }
   });
 };
+
+exports.addLaser = (req, res) => {
+  console.log(req.body);
+  Product.findOneAndUpdate(
+    { order: req.body.order },
+    {
+      point: req.body.point,
+      lines: req.body.draw,
+      curve: req.body.curves,
+    },
+    { $set: true }
+  ).exec((err, laser) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(laser);
+    }
+  });
+};

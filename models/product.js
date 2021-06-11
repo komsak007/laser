@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
     trim: true,
     maxlength: 32,
   },
-  point: {},
+  point: { default: "" },
   curve: {},
   lines: [
     {
