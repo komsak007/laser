@@ -25,13 +25,7 @@ exports.create = async (req, res) => {
   try {
     console.log(req.body);
     // req.body.slug = slugify(req.body.title);
-    const newProduct = await new Product({
-      name: req.body.product.name,
-      order: req.body.product.order,
-      description: req.body.product.order,
-      category: req.body.product.category,
-      images: req.body.images,
-    }).save();
+    const newProduct = await new Product(req.body.product).save();
     res.json(newProduct);
   } catch (err) {
     console.log(err);

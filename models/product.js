@@ -4,11 +4,6 @@ const moment = require("moment-timezone");
 var dateThailand = moment.tz(Date.now(), "Asia/Bangkok");
 
 const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    maxlength: 32,
-  },
   point: { default: "" },
   curve: {},
   lines: [
@@ -22,13 +17,76 @@ const productSchema = new mongoose.Schema({
     trim: true,
     maxlength: 32,
   },
-  description: {
+  customer: {
     type: String,
     maxlength: 2000,
   },
+  dayjob: {
+    type: String,
+    maxlength: 32,
+  },
+  contact: {
+    type: String,
+    maxlength: 32,
+  },
+  Appointment: {
+    type: String,
+    maxlength: 32,
+  },
+  team: {
+    type: String,
+    maxlength: 32,
+  },
   place: {
     type: String,
-    trim: true,
+    maxlength: 32,
+  },
+  glock: {
+    type: String,
+    maxlength: 32,
+  },
+  stove: {
+    type: String,
+    maxlength: 32,
+  },
+  sink: {
+    type: String,
+    maxlength: 32,
+  },
+  water: {
+    type: String,
+    maxlength: 32,
+  },
+  lotus: {
+    type: String,
+    maxlength: 32,
+  },
+  lotusHeight: {
+    type: String,
+    maxlength: 32,
+  },
+  lotusStyle: {
+    type: String,
+    maxlength: 32,
+  },
+  noseTop: {
+    type: String,
+    maxlength: 32,
+  },
+  noseTopHeight: {
+    type: String,
+    maxlength: 32,
+  },
+  noseTopStyle: {
+    type: String,
+    maxlength: 32,
+  },
+  counter: {
+    type: String,
+    maxlength: 32,
+  },
+  counterHeight: {
+    type: String,
     maxlength: 32,
   },
   category: {
